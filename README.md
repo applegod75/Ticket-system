@@ -1,8 +1,8 @@
 # Ticket system
-a simple ticketing system that writes to, and reads from tickets.txt
+a simple ticketing system.
 
 # important:
-make sure you do ***NOT*** run the application without having backed up the tickets.txt file, as it overwrites it as soon as you use the "generate" command.
+make sure you do ***NOT*** run the application without having backed up your ticket-containing files, as it overwrites them as soon as you use the "generate" command.
 
 # inner workings
 
@@ -10,11 +10,18 @@ make sure you do ***NOT*** run the application without having backed up the tick
 
 this generates the amount of ticket values that you add after the command, and writes them to a file.
 
-This function works by first generating a random string (with characters 'A-Z', 'a-z', and '1-9') of a random size (you can never be too random), and then encoding it into an SHA256 hash. It then writes this hash to a file.
+This function works by first generating a random string (with characters 'A-Z', 'a-z', and '1-9') of a random size (you can never be too random), and then encoding it into an SHA256 hash. It then writes this hash to a file. <br>
+Due to this function having to compute an SHA256 hash, it is pretty slow. To compensate for this, I added the "generate-fast" function.
+
+## generate-fast:
+
+this generates the amount of tickets you add in the value, and writes them to a file, with a faster algorithm then "generate".
+
+This function works by just generating a random string with a length of 32. It is about 7-8 times faster then "generate", but less secure because there is no such thing as absolute randomness, it is predictable in computing.
 
 ## check:
 
-This checks if the hash you give it is in the "tickets.txt" file, that's it.
+This checks if the hash you give it is in the "tickets.tckt" file, that's it.
 
 ## help:
 

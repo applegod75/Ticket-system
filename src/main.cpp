@@ -2,11 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include "FileHandling.h"
 
 void PrintHelp();
-void WriteTickets(int amount);
-bool ReadTicket(std::string hash);
-void WriteTicketsFast(int amount);
 std::string SHA256(const std::string& input);
 std::vector<std::string> TicketGenerator(int amount);
 std::string cmd1;
@@ -14,6 +12,7 @@ std::string cmd2;
 int amount;
 
 int main() {
+
 	std::cin >> cmd1;
 	if (cmd1 == "generate") {
 		std::cin >> amount;
@@ -22,6 +21,18 @@ int main() {
 	if (cmd1 == "generate-fast") {
 		std::cin >> amount;
 		WriteTicketsFast(amount);
+	}
+	if (cmd1 == "check-cfg") {
+		if (CheckCfg()) {
+			rewriteCfg();
+		}
+	}
+	if (cmd1 == "add-cfg") {
+		std::cin >> cmd2;
+		if (CheckCfg()) {
+			rewriteCfg();
+			AppCfg(cmd2);
+		}
 	}
 	if (cmd1 == "check") {
 		std::cin >> cmd2;
