@@ -23,6 +23,13 @@ This function works by just generating a random string with a length of 32. It i
 
 This checks if the hash you give it is in the "tickets.tckt" file, that's it.
 
+## add-cfg:
+
+This adds a filename to the config file. <br>
+
+- the function works by first checking if the cfg exists, if it does, it checks all filenames inside, to see if they exist, then checks for duplicates, and then rewrites the file.
+- then it appends the filename you gave to the funtion, if the file exists.
+
 ## help:
 
 Brings up a simple help page, doesn't support specific commands yet.
